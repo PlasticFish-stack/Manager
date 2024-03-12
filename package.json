@@ -1,0 +1,30 @@
+{
+  "name": "manager",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@npmcli/fs": "^3.1.0",
+    "@quasar/extras": "^1.16.9",
+    "crypto-js": "^4.2.0",
+    "nprogress": "^0.2.0",
+    "pinia": "^2.1.7",
+    "quasar": "^2.14.7",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@quasar/vite-plugin": "^1.6.0",
+    "@vitejs/plugin-vue": "^4.6.2",
+    "axios": "^1.6.7",
+    "sass": "^1.71.1",
+    "sass-loader": "^14.1.1",
+    "style-loader": "^3.3.4",
+    "vite": "^5.1.5"
+  }
+}
