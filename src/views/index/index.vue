@@ -82,7 +82,7 @@ let link = ref('home')
 <style lang='scss' scoped>
 .acrylic {
   background-color: rgba(233, 233, 233, 0.4);
-  mask-image: url('/src/assets/pic/sss.svg');
+  // mask-image: url('/src/assets/pic/sss.svg');
   background-size: cover;
   background-repeat: no-repeat;
 }
