@@ -7,7 +7,10 @@ import "@/router/auth"
 import '@quasar/extras/material-icons/material-icons.css'
 import 'quasar/src/css/index.sass'
 import '@/styles/index.scss' // global css
+import { setCssVar } from 'quasar'
 
+
+setCssVar('transparent', '#00000000')
 
 const pinia = createPinia()
 const app = createApp(App)

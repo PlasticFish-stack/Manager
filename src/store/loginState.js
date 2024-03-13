@@ -1,16 +1,14 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { loginUser } from '@/api/permission.js'
+import { loginStateReg } from '@/utils/request.js'
 export const UseLoginState = defineStore('login', () => {
   let token = ref(null)
-  // let cookieReg = /jwt=([\s\S]+)/g
-  // if (cookieReg.test(document.cookie)) {
-  //   let id = loginReg()
-  //   cookieReg.lastIndex = 0
-  //   token.value = cookieReg.exec(document.cookie)[1]
-  // }
+  if (localStorage.getItem('token')) {
+    token.value = localStorage.getItem('token')
+    setTimeout(() => { loginStateReg() }, 0)
+  }
   let isAdmin = ref(false)
-  function loginExit(){
+  function loginExit() {
     token.value = null
   }
   function localToken(user) {

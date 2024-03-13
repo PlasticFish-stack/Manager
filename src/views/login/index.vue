@@ -74,22 +74,22 @@ async function handleLogin() {
               </div>
             </div>
 
-            <q-input v-model="formData.username" class="q-pb-lg full-width" label="username">
+            <q-input v-model="formData.username" class="q-pb-lg full-width" label="username" lazy-rules :rules="[val => !!val || '用户名不能为空']">
               <template v-slot:prepend>
                 <q-icon :name="passwordDisplay ? 'sentiment_very_dissatisfied' : 'sentiment_very_satisfied'"
                   @click="passwordDisplay = !passwordDisplay" />
               </template>
               <template v-slot:append>
-                <q-icon v-if="formData.username != ''" name="close" @click="username = ''" class="cursor-pointer" />
+                <q-icon v-if="formData.username != ''" name="close" @click="formData.username = ''" class="cursor-pointer" />
               </template>
             </q-input>
             <q-input v-model="formData.password" bottom-slots class="q-pb-md full-width" label="password"
-              :type="passwordDisplay ? 'password' : 'text'">
+              :type="passwordDisplay ? 'password' : 'text'" :rules="[val => !!val || '密码不能为空']" lazy-rules>
               <template v-slot:prepend>
                 <q-icon name="vpn_key" />
               </template>
               <template v-slot:append>
-                <q-icon v-if="formData.password != ''" name="close" @click="password = ''" class="cursor-pointer" />
+                <q-icon v-if="formData.password != ''" name="close" @click="formData.password = ''" class="cursor-pointer" />
               </template>
             </q-input>
             <div class="row items-center q-mb-md">
@@ -103,7 +103,7 @@ async function handleLogin() {
                   style="overflow: hidden;">
                   登录
                   <template v-slot:loading>
-                    <q-linear-progress stripe animation-speed="300" rounded style="height: 90%; margin: 0 2px 0 2px;"
+                    <q-linear-progress stripe animation-speed="300" rounded style="height: 90%; margin: 0 2px -1px 2px;"
                       :value="progressFixed" color="red" />
                   </template>
                 </q-btn>
