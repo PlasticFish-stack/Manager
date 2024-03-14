@@ -5,13 +5,13 @@ export default[
     path: '/',
     name: 'index',
     component: index,
-    // children: [
-    //   {
-    //     path: '/home',
-    //     name: 'home',
-    //     component: () => import("@/views/index/template/home/Home.vue")
-    //   }
-    // ]
+    children: [
+      {
+        path: '/home',
+        name: 'home',
+        component: () => import("@/views/index/template/home")
+      }
+    ]
   }
   
 ]

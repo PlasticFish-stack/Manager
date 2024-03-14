@@ -24,9 +24,14 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <q-btn round :text-color="$q.dark.isActive ? 'deep-orange-12' : 'amber-8'"
-    :icon="store.dark ? 'wb_sunny' : 'nightlight_round'" :color="store.dark ? 'grey-3' : 'grey-8'"
+  <q-btn round :text-color="$q.dark.isActive ? 'deep-orange-12' : 'amber-8'" class="mode"
+    :icon="store.dark ? 'wb_sunny' : 'nightlight_round'"
     @click="store.ModeToggle(); reLoading()"></q-btn>
 </template>
-
-<style lang='scss' scoped></style>
+<style lang='scss' scoped>
+.mode{
+  background-image: url('/src/assets/utils/graphcoders-lil-fiber.png');
+  height: 30px;
+  width: 30px;
+}
+</style>

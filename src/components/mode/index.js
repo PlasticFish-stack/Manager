@@ -1,2 +1,2 @@
-import mode from './Index.vue'
+import mode from './mode.vue'
 export default mode

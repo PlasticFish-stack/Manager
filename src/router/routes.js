@@ -1,4 +1,3 @@
-import { defineAsyncComponent } from 'vue'
 const Routes = [];
 const metaRoutes = import.meta.glob('./modules/*.js', { eager: true });
 for (let item in metaRoutes) {

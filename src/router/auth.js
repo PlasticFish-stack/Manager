@@ -13,8 +13,8 @@ router.beforeEach((to, from) => {
       return { name: 'login' }
     }
   } else {
-    if (loginStore.token !== null) {
-      return { name: 'index' }
-    }
+    // if (loginStore.token !== null) {
+    //   return { name: 'index' }
+    // }
   }
 })
