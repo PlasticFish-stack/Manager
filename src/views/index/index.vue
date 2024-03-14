@@ -8,19 +8,24 @@ const leftDrawerOpen = ref(false)
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
 }
+let drawer = ref(true);
+let miniState = ref(true);
+
 let link = ref('home')
-function reComputedOffset(offset) {
-  return { minHeight: offset ? `calc(100vh - ${offset}px)` : '100vh' }
-  console.log(offset, 'offset');
+function drawerClick(e) {
+  if (miniState.value) {
+    miniState.value = false
+    e.stopPropagation()
+  }
 }
 
 
 </script>
 
 <template>
-  <div class="acrylic">
-    <q-layout view="hHr lpr lfr">
-      <q-header class="text-grey q-ma-sm q-py-xs header" style="">
+  <div :class="darkStore.dark? 'acrylic_dark': 'acrylic_light'">
+    <!-- <q-layout view="hHr lpr lfr">
+      <q-header class="text-grey q-ma-sm q-py-xs header">
         <q-toolbar>
           <q-avatar rounded>
             <img src="@/assets/pic/404.png">
@@ -44,13 +49,14 @@ function reComputedOffset(offset) {
         </q-toolbar>
       </q-header>
 
-      <q-drawer class="bg-grey "  :width="200" side="left">
-        <!-- drawer content -->
-
-
+      <q-drawer class="q-py-lg" persistent v-model="drawer" show-if-above @click.capture="drawerClick"
+        :mini="!drawer || miniState" :mini-width="56" :width="200" side="left">
         <q-list padding>
           <q-item>
-            <q-btn dense flat round :icon="leftDrawerOpen ? 'menu_open' : 'menu'" @click="toggleLeftDrawer" />
+            <Transition>
+              <q-btn dense flat round :icon="leftDrawerOpen ? 'menu_open' : 'menu'" @click="miniState = true" />
+            </Transition>
+
           </q-item>
           <q-item clickable v-ripple active-class="my-menu-link" :active="link === 'home'" @click="link = 'home'"
             to="home">
@@ -83,35 +89,46 @@ function reComputedOffset(offset) {
       </q-drawer>
 
       <q-page-container>
-        <q-page :style="[darkStore.dark?  '': 'background-color: rgba(255, 255, 255, 0.811)']">
-          <div class="column q-py-lg q-pl-sm q-pr-sm" style="min-height: inherit">
-            <div class="page">
+        <q-page>
+          <div class="column q-pt-lg q-pb-sm q-pl-sm" style="min-height: inherit">
+            <div :class="[darkStore.dark ? 'page_dark' : 'page_light']" class="row">
               <router-view></router-view>
             </div>
 
           </div>
         </q-page>
       </q-page-container>
-    </q-layout>
+    </q-layout> -->
   </div>
 
 </template>
 
 <style lang='scss' scoped>
-.acrylic {
-  background-color: rgba(233, 233, 233, 0.4);
+.acrylic_light{
+  background: radial-gradient(circle at 72% 46%, #d2e5f3 0, #d4d4d4 57%, #ebe6e6 100%);
+}
+.acrylic_dark {
+  background-color: rgba(124, 124, 124, 0.664);
   background-image: url('/src/assets/pic/sss.svg');
   background-size: cover;
   background-repeat: no-repeat;
 }
 
-.page {
+.page_light {
   flex: 1;
   border-radius: 8px;
-  box-shadow: 7px 7px 12px rgba(0, 0, 0, .4),
-             -7px -7px 12px rgba(133, 133, 133, 0.05);
-  background-image: url('/src/assets/utils/food.png');
-  overflow: hidden;
+  // box-shadow: 7px 7px 12px rgba(0, 0, 0, .4),
+  //   -7px -7px 12px rgba(133, 133, 133, 0.05);
+  // background-image: url('/src/assets/utils/fresh-snow.png');
+  // background-color: rgba(255, 255, 255, 0.40);
+}
+
+
+.page_dark {
+  flex: 1;
+  border-radius: 8px;
+  box-shadow: 3px 3px 12px rgba(0, 0, 0, .4),
+    -7px -7px 12px rgba(133, 133, 133, 0.05);
 }
 
 .header {
