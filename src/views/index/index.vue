@@ -24,7 +24,10 @@ function drawerClick(e) {
 
 <template>
   <div :class="darkStore.dark? 'acrylic_dark': 'acrylic_light'">
-    <!-- <q-layout view="hHr lpr lfr">
+    <div>
+
+    </div>
+    <q-layout view="hHr lpr lfr">
       <q-header class="text-grey q-ma-sm q-py-xs header">
         <q-toolbar>
           <q-avatar rounded>
@@ -71,18 +74,10 @@ function drawerClick(e) {
             </q-item-section>
             <q-item-section class="text-">GPT Chat</q-item-section>
           </q-item>
-          <q-item clickable v-ripple active-class="my-menu-link" :active="link === 'router'" @click="link = 'router'">
-            <q-item-section avatar>
-              <q-icon name="router" />
-            </q-item-section>
-
-            <q-item-section>Trojan管理</q-item-section>
-          </q-item>
           <q-item clickable v-ripple active-class="my-menu-link" :active="link === 'group'" @click="link = 'group'">
             <q-item-section avatar>
               <q-icon name="groups" />
             </q-item-section>
-
             <q-item-section>用户管理</q-item-section>
           </q-item>
         </q-list>
@@ -90,7 +85,7 @@ function drawerClick(e) {
 
       <q-page-container>
         <q-page>
-          <div class="column q-pt-lg q-pb-sm q-pl-sm" style="min-height: inherit">
+          <div class="column q-pt-lg q-pb-sm q-pl-sm q-pr-sm" style="min-height: inherit">
             <div :class="[darkStore.dark ? 'page_dark' : 'page_light']" class="row">
               <router-view></router-view>
             </div>
@@ -98,7 +93,7 @@ function drawerClick(e) {
           </div>
         </q-page>
       </q-page-container>
-    </q-layout> -->
+    </q-layout>
   </div>
 
 </template>
@@ -117,18 +112,13 @@ function drawerClick(e) {
 .page_light {
   flex: 1;
   border-radius: 8px;
-  // box-shadow: 7px 7px 12px rgba(0, 0, 0, .4),
-  //   -7px -7px 12px rgba(133, 133, 133, 0.05);
-  // background-image: url('/src/assets/utils/fresh-snow.png');
-  // background-color: rgba(255, 255, 255, 0.40);
 }
 
 
 .page_dark {
   flex: 1;
   border-radius: 8px;
-  box-shadow: 3px 3px 12px rgba(0, 0, 0, .4),
-    -7px -7px 12px rgba(133, 133, 133, 0.05);
+
 }
 
 .header {
