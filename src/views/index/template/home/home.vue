@@ -1,24 +1,32 @@
 <script setup>
 import { UseDarkState } from '@/store/darkState.js';
-import infoCard from '@/components/infoCard';
+import infoCard from '@/components/infoCard'
+import { serverInfo } from '@/api/common.js'
+import { ref } from 'vue'
 const darkStore = UseDarkState()
+let systemInformation = ref(null)
+async function linkServiceInfo() {
+  let res  = await serverInfo()
+  systemInformation.value = res.Data
+}
+linkServiceInfo()
+
 let info = {
   title: 'CPU',
   content: '已使用率',
-  data: 90
+  data: 25
 }
+let serverInfoFetch = setInterval(() => {
+  linkServiceInfo()
+  
+}, 2000)
 </script>
 
 <template>
   <div class="full-width row gt-sm">
     <div class="col-md-6 col-xs-12 row q-py-sm q-pr-sm">
-      <div class="col-12 column blocks">
-        <div class="bg-red row justify-center col-gutter-sm">
-          <infoCard v-for="item in 4" class="col-6" :info="info"/>
-        </div>
-        <div class="bg-blue col-8">
-
-        </div>
+      <div class="col-12 column blocks items-center q-pt-md">
+        <infoCard class="col-auto full-width" v-for="(value, _key, index) in systemInformation" :info="value" :title="Object.keys(systemInformation)[index]"/>
       </div>
     </div>
     <div class="col-md-6 col-xs-12 row q-py-sm ">
@@ -31,7 +39,7 @@ let info = {
     <div class="fit bg-red blocks">
       123
     </div>
-    
+
   </div>
 </template>
 

@@ -99,15 +99,7 @@ function drawerClick(e) {
 </template>
 
 <style lang='scss' scoped>
-.acrylic_light{
-  background: radial-gradient(circle at 72% 46%, #d2e5f3 0, #d4d4d4 57%, #ebe6e6 100%);
-}
-.acrylic_dark {
-  background-color: rgba(124, 124, 124, 0.664);
-  background-image: url('/src/assets/pic/sss.svg');
-  background-size: cover;
-  background-repeat: no-repeat;
-}
+
 
 .page_light {
   flex: 1;

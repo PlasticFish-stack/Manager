@@ -1,4 +1,5 @@
-import request from '@/utils/request'
+import request from './index.js'
+
 
 export function setQuota(data) {
     return request.post('/trojan/data', data)
