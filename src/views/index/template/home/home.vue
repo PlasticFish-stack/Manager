@@ -5,8 +5,9 @@ import { serverInfo } from '@/api/common.js'
 import { ref } from 'vue'
 const darkStore = UseDarkState()
 let systemInformation = ref(null)
+let colInfo = ref(['col-3', 'col-6', 'col-6', 'col-6'])
 async function linkServiceInfo() {
-  let res  = await serverInfo()
+  let res = await serverInfo()
   systemInformation.value = res.Data
 }
 linkServiceInfo()
@@ -16,9 +17,9 @@ let info = {
   content: '已使用率',
   data: 25
 }
+
 let serverInfoFetch = setInterval(() => {
   linkServiceInfo()
-  
 }, 10000)
 
 </script>
@@ -26,8 +27,9 @@ let serverInfoFetch = setInterval(() => {
 <template>
   <div class="full-width row gt-sm">
     <div class="col-md-6 col-xs-12 row q-py-sm q-pr-sm">
-      <div class="col-12  q-pa-lg blocks">
-        <infoCard  v-for="(value, _key, index) in systemInformation" :info="value" :title="Object.keys(systemInformation)[index]"/>
+      <div class="col-12 row  q-pa-lg blocks ">
+        <infoCard :class="colInfo[index]" v-for="(value, _key, index) in systemInformation" :info="value"
+          :title="Object.keys(systemInformation)[index]" />
       </div>
     </div>
     <div class="col-md-6 col-xs-12 row q-py-sm ">
@@ -52,4 +54,5 @@ let serverInfoFetch = setInterval(() => {
   box-shadow: none;
   overflow: hidden;
 }
+
 </style>

@@ -1,19 +1,22 @@
 <script setup>
 import { computed, ref } from 'vue'
-const props = defineProps(['info', 'title'])
 import { UseDarkState } from '@/store/darkState.js'
-console.log(props.info);
+const props = defineProps(['info', 'title'])
+
+const darkStore = UseDarkState()
+
 function byte(data) {
   return +(data / 1024 / 1024).toFixed(2)
 }
-console.log(byte(763125760));
 let title = ref(null)
-let ratio = ref('1')
+let ratio = ref('')
+
 let information = computed(() => {
   let res = null
   switch (props.title) {
     case "cpu":
       title.value = "处理器"
+      ratio.value = '1'
       res = +props.info[0].toFixed(2)
       break;
     case "disk":
@@ -26,6 +29,7 @@ let information = computed(() => {
       break;
     case "memory":
       title.value = "运行内存"
+      ratio.value = "2.8"
       res = +(((props.info['used'] / props.info['total']) * 100).toFixed(2))
       break;
     case "netCount":
@@ -43,12 +47,12 @@ let information = computed(() => {
   return res
 })
 
-const darkStore = UseDarkState()
+
 </script>
 
 <template>
   <div class="card ">
-    <q-responsive :ratio="ratio">
+    <q-responsive :ratio="ratio" style="min-height: 150px; min-width: 150px;">
       <div class="acrylic_light q-pa-lg" style="border-radius: 8px; border: 1px solid white;"
         :class="darkStore.dark ? 'acrylic_dark' : 'acrylic_light'">
         <div class="row items-center">
@@ -73,9 +77,4 @@ const darkStore = UseDarkState()
   </div>
 </template>
 
-<style lang='scss' scoped>
-.card {
-  min-width: 100px;
-  max-width: 300px;
-}
-</style>
+<style lang='scss' scoped></style>
