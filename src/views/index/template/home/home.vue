@@ -19,14 +19,15 @@ let info = {
 let serverInfoFetch = setInterval(() => {
   linkServiceInfo()
   
-}, 2000)
+}, 10000)
+
 </script>
 
 <template>
   <div class="full-width row gt-sm">
     <div class="col-md-6 col-xs-12 row q-py-sm q-pr-sm">
-      <div class="col-12 column blocks items-center q-pt-md">
-        <infoCard class="col-auto full-width" v-for="(value, _key, index) in systemInformation" :info="value" :title="Object.keys(systemInformation)[index]"/>
+      <div class="col-12  q-pa-lg blocks">
+        <infoCard  v-for="(value, _key, index) in systemInformation" :info="value" :title="Object.keys(systemInformation)[index]"/>
       </div>
     </div>
     <div class="col-md-6 col-xs-12 row q-py-sm ">

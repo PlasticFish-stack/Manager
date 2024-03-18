@@ -8,6 +8,7 @@ function byte(data) {
 }
 console.log(byte(763125760));
 let title = ref(null)
+let ratio = ref('1')
 let information = computed(() => {
   let res = null
   switch (props.title) {
@@ -17,6 +18,7 @@ let information = computed(() => {
       break;
     case "disk":
       title.value = "磁盘"
+      ratio.value = "2"
       res = +(props.info['usedPercent'].toFixed(2))
       break;
     case "load":
@@ -46,25 +48,34 @@ const darkStore = UseDarkState()
 
 <template>
   <div class="card ">
-    <div class="acrylic_light q-pa-lg" style="border-radius: 8px;"
-      :class="darkStore.dark ? 'acrylic_dark' : 'acrylic_light'">
-      <div>
-        <div class="text-overline">{{ props.title }}</div>
+    <q-responsive :ratio="ratio">
+      <div class="acrylic_light q-pa-lg" style="border-radius: 8px; border: 1px solid white;"
+        :class="darkStore.dark ? 'acrylic_dark' : 'acrylic_light'">
+        <div class="row items-center">
+          <div class="text-overline">{{ props.title }}</div>
+          <q-space></q-space>
+        </div>
+        <div class="row items-center">
+          <div class="text-subtitle1">{{ title }}</div>
+          <q-space></q-space>
+          <div class="text-body1">{{ information }}%</div>
+        </div>
+        <div class="row items-center">
+          <div v-if="props.title === 'memory'" class="text-caption text-grey-8">
+            已用{{ byte(props.info['used']) }}MB/{{ byte(props.info['total']) }}MB</div>
+        </div>
+        <div>
+          <q-linear-progress stripe rounded size="20px" :value="information / 100" color="red" class="q-mt-sm" />
+        </div>
+        <div></div>
       </div>
-      <div  class="row items-center">
-        <div class="text-subtitle1">{{ title }}</div>
-        <q-space></q-space>
-        <div class="text-body1">{{ information }}%</div>
-      </div>
-      <div>
-        <q-linear-progress stripe rounded size="20px" :value="information / 100" color="red" class="q-mt-sm" />
-      </div>
-      <div></div>
-    </div>
-
+    </q-responsive>
   </div>
 </template>
 
 <style lang='scss' scoped>
-
+.card {
+  min-width: 100px;
+  max-width: 300px;
+}
 </style>
