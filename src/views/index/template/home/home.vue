@@ -1,6 +1,7 @@
 <script setup>
 import { UseDarkState } from '@/store/darkState.js';
 import infoCard from '@/components/infoCard'
+import board from '@/components/board'
 import { serverInfo } from '@/api/common.js'
 import { ref } from 'vue'
 const darkStore = UseDarkState()
@@ -27,7 +28,8 @@ let serverInfoFetch = setInterval(() => {
   <div class="full-width row gt-sm">
     <div class="col-md-6 col-xs-12 row q-py-sm q-pr-sm">
       <div class="col-12  q-pa-lg blocks">
-        <infoCard  v-for="(value, _key, index) in systemInformation" :info="value" :title="Object.keys(systemInformation)[index]"/>
+        <!-- <infoCard  v-for="(value, _key, index) in systemInformation" :info="value" :title="Object.keys(systemInformation)[index]"/> -->
+        <board> </board>
       </div>
     </div>
     <div class="col-md-6 col-xs-12 row q-py-sm ">

@@ -47,7 +47,7 @@ const darkStore = UseDarkState()
 </script>
 
 <template>
-  <div class="card ">
+  <div class="card">
     <q-responsive :ratio="ratio">
       <div class="acrylic_light q-pa-lg" style="border-radius: 8px; border: 1px solid white;"
         :class="darkStore.dark ? 'acrylic_dark' : 'acrylic_light'">
