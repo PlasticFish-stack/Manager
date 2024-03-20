@@ -23,7 +23,7 @@ function drawerClick(e) {
 </script>
 
 <template>
-  <div :class="darkStore.dark? 'acrylic_dark': 'acrylic_light'">
+  <div :class="darkStore.dark? 'acrylic_dark': 'acrylic_light'" style="transform:scale(1);">
     <div>
 
     </div>

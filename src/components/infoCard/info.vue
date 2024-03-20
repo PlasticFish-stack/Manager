@@ -2,11 +2,9 @@
 import { computed, ref } from 'vue'
 const props = defineProps(['info', 'title'])
 import { UseDarkState } from '@/store/darkState.js'
-console.log(props.info);
 function byte(data) {
   return +(data / 1024 / 1024).toFixed(2)
 }
-console.log(byte(763125760));
 let title = ref(null)
 let ratio = ref('1')
 let information = computed(() => {
@@ -14,6 +12,7 @@ let information = computed(() => {
   switch (props.title) {
     case "cpu":
       title.value = "处理器"
+      console.log('12345');
       res = +props.info[0].toFixed(2)
       break;
     case "disk":
@@ -22,7 +21,7 @@ let information = computed(() => {
       res = +(props.info['usedPercent'].toFixed(2))
       break;
     case "load":
-
+      title.value = "负载"
       break;
     case "memory":
       title.value = "运行内存"
@@ -47,10 +46,9 @@ const darkStore = UseDarkState()
 </script>
 
 <template>
-  <div class="card">
-    <q-responsive :ratio="ratio">
-      <div class="acrylic_light q-pa-lg" style="border-radius: 8px; border: 1px solid white;"
-        :class="darkStore.dark ? 'acrylic_dark' : 'acrylic_light'">
+
+      <div class="q-pa-lg" style="border-radius: 8px; border: 1px solid white;"
+        :class="darkStore.dark ? 'acrylic_dark' : 'acrylic_light', props.title">
         <div class="row items-center">
           <div class="text-overline">{{ props.title }}</div>
           <q-space></q-space>
@@ -69,13 +67,19 @@ const darkStore = UseDarkState()
         </div>
         <div></div>
       </div>
-    </q-responsive>
-  </div>
+
 </template>
 
 <style lang='scss' scoped>
-.card {
-  min-width: 100px;
-  max-width: 300px;
+.cpu{
+  max-width: 30%;
+  min-height: 150px;
+  aspect-ratio: 1/1
+}
+.memory{
+
+}
+.disk{
+  width: 100%;
 }
 </style>

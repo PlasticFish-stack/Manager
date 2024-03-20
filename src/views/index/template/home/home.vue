@@ -2,34 +2,41 @@
 import { UseDarkState } from '@/store/darkState.js';
 import infoCard from '@/components/infoCard'
 import board from '@/components/board'
-import { serverInfo } from '@/api/common.js'
-import { ref } from 'vue'
+import { UseServerInfoState } from '@/store/serverInfoState.js'
+import { ref, onMounted } from 'vue'
 const darkStore = UseDarkState()
-let systemInformation = ref(null)
-async function linkServiceInfo() {
-  let res  = await serverInfo()
-  systemInformation.value = res.Data
-}
-linkServiceInfo()
+const serverInfoStore = UseServerInfoState()
 
-let info = {
-  title: 'CPU',
-  content: '已使用率',
-  data: 25
-}
-let serverInfoFetch = setInterval(() => {
-  linkServiceInfo()
-  
-}, 10000)
+let systemInformation = ref()
 
+// linkServiceInfo();
+// let serverInfoFetch = setInterval(() => {
+//   linkServiceInfo()
+// }, 10000)
 </script>
 
 <template>
+  
   <div class="full-width row gt-sm">
     <div class="col-md-6 col-xs-12 row q-py-sm q-pr-sm">
       <div class="col-12  q-pa-lg blocks">
-        <!-- <infoCard  v-for="(value, _key, index) in systemInformation" :info="value" :title="Object.keys(systemInformation)[index]"/> -->
-        <board> </board>
+          <div class="q-mb-md" style="width: 100%;display: flex;">
+            <infoCard class="q-mr-md" v-if="serverInfoStore.serverMsg != null" :info="serverInfoStore.serverMsg['cpu']" :title="'cpu'" />
+            <infoCard class="full-width"  v-if="serverInfoStore.serverMsg != null" :info="serverInfoStore.serverMsg['memory']" :title="'memory'" />
+          </div>
+          <div class="bg-red" style="width: 100%;display: flex;">
+            <infoCard class="fit" v-if="serverInfoStore.serverMsg != null" :info="serverInfoStore.serverMsg['disk']" :title="'disk'" />
+            
+          </div>
+          <div class="bg-red" style="width: 100%;display: flex;">
+            <infoCard class="fit" v-if="serverInfoStore.serverMsg != null" :info="serverInfoStore.serverMsg['load']" :title="'load'" />
+          </div>
+          <div class="bg-red" style="width: 100%;display: flex;">
+            <infoCard class="fit" v-if="serverInfoStore.serverMsg != null" :info="serverInfoStore.serverMsg['swap']" :title="'swap'" />
+            
+          </div>
+          
+        <div class="col-6 bg-blue"></div>
       </div>
     </div>
     <div class="col-md-6 col-xs-12 row q-py-sm ">
@@ -44,6 +51,7 @@ let serverInfoFetch = setInterval(() => {
     </div>
 
   </div>
+
 </template>
 
 <style lang='scss' scoped>

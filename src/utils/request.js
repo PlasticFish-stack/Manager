@@ -6,9 +6,16 @@ import router from '@/router'
 
 export async function getTitle() {
   const titleStore = UseTitleState()
-  let res = await check()
-  document.title = res.data.title
-  titleStore.titleManager(res.data.title)
+  try{
+    let res = await check()
+    document.title = res.data.title
+    titleStore.titleManager(res.data.title)
+    return 
+  }catch{
+    console.log('获取失败重新获取');
+    getTitle()
+  }
+  
 }
 export async function loginStateReg() {
   const loginStore = UseLoginState()

@@ -54,7 +54,7 @@ async function handleLogin() {
 }//登录接口
 </script>
 <template>
-  <div class="fullscreen  row justify-center items-center gt-sm  acrylic ">
+  <div class="fullscreen row justify-center items-center gt-sm  acrylic ">
 
     <div class="q-ma-xl loginWindow" >
       <q-responsive :ratio="5/3">
