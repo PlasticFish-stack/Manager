@@ -1,7 +1,9 @@
 <script setup>
+
 import { UseDarkState } from '@/store/darkState.js';
 import mode from '@/components/mode'
 import { ref } from 'vue'
+
 
 const darkStore = UseDarkState()
 const leftDrawerOpen = ref(false)

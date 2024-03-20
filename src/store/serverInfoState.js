@@ -2,7 +2,15 @@ import { defineStore } from "pinia";
 import { reactive, ref } from 'vue'
 import { serverInfo } from '@/api/common.js'
 export const UseServerInfoState = defineStore('server', () => {
-  let serverMsg = ref(null)
+  let serverMsg = ref({
+    cpu: null,
+    disk: null,
+    load: null,
+    memory: null,
+    netCount: null,
+    speed: null,
+    swap: null
+  })
   async function InfoGet() {
     try {
       let res = await serverInfo()
