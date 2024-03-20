@@ -1,18 +1,21 @@
 <script setup>
 import { computed, ref } from 'vue'
-const props = defineProps(['info', 'title'])
 import { UseDarkState } from '@/store/darkState.js'
+const props = defineProps(['info', 'title'])
+
+const darkStore = UseDarkState()
+
 function byte(data) {
   return +(data / 1024 / 1024).toFixed(2)
 }
 let title = ref(null)
-let ratio = ref('1')
+let ratio = ref('')
+
 let information = computed(() => {
   let res = null
   switch (props.title) {
     case "cpu":
       title.value = "处理器"
-      console.log('12345');
       res = +props.info[0].toFixed(2)
       break;
     case "disk":
@@ -25,6 +28,7 @@ let information = computed(() => {
       break;
     case "memory":
       title.value = "运行内存"
+      ratio.value = "2.8"
       res = +(((props.info['used'] / props.info['total']) * 100).toFixed(2))
       break;
     case "netCount":
@@ -42,7 +46,7 @@ let information = computed(() => {
   return res
 })
 
-const darkStore = UseDarkState()
+
 </script>
 
 <template>
