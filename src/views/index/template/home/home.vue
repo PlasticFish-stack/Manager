@@ -17,14 +17,14 @@ let systemInformation = setInterval(() => {
   <div class="full-width row gt-sm">
     <div class="col-md-6 col-xs-12 full-height  q-py-sm q-pr-sm">
       <div class="col-12 q-pa-lg blocks full-height">
-        <div class="q-mb-md " style="width: 100%;display: flex; ">
+        <div class="q-mb-md " style="width: 100%; display: flex; ">
           <infoCard class="q-mr-md" :info="serverInfoStore.serverMsg['cpu']" :title="'cpu'" />
           <infoCard class="full-width" :info="serverInfoStore.serverMsg['memory']" :title="'memory'" />
         </div>
-        <div class="q-mb-md" style="width: 100%;display: flex;">
+        <div class="q-mb-md" style="width: 100%; display: flex;">
           <infoCard class="fit" :info="serverInfoStore.serverMsg['disk']" :title="'disk'" />
         </div>
-        <div class="q-mb-md" style="width: 100%;display: flex;">
+        <div class="q-mb-md" style="width: 100%; display: flex;">
           <infoCard class="fit" :info="serverInfoStore.serverMsg['swap']" :title="'swap'" />
         </div>
         <div class="q-mb-md" style="width: 100%;display: flex;">

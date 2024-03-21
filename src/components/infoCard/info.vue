@@ -51,8 +51,8 @@ let information = computed(() => {
 </script>
 
 <template>
-  <div class="q-pa-lg" style="border-radius: 8px; border: 1px solid white;"
-    :class="darkStore.dark ? 'acrylic_dark' : 'acrylic_light', props.title">
+  <div class="overflow-hidden q-pa-lg" style="border-radius: 8px;" :style="{'border': darkStore.dark ? '': 'border: 1px solid white'}"
+    :class="darkStore.dark ? 'acrylic_gery' : 'acrylic_light', props.title">
     <q-skeleton type="QRange" v-if="props.info == null" size="100%" />
     <div v-if="props.info != null">
       <div class="row items-center">
@@ -85,8 +85,9 @@ let information = computed(() => {
 <style lang='scss' scoped>
 .cpu {
   max-width: 30%;
-  min-height: 150px;
-  aspect-ratio: 1/1
+  min-height: 180px;
+  aspect-ratio: 1/1;
+
 }
 
 .memory {}

@@ -1,11 +1,17 @@
 @import './normalize.scss';
 
 .acrylic_light{
-  background: radial-gradient(circle at 72% 46%, #d2e5f3 0, #d4d4d4 57%, #ebe6e6 100%);
+  background: radial-gradient(circle at 60% 50%, #fafffe 0, #fffbfb 57%, #ebe6e6 100%);
 }
 .acrylic_dark {
   background-color: rgba(124, 124, 124, 0.664);
   background-image: url('/src/assets/utils/dark.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.acrylic_gery {
+  background-color: rgb(30, 30, 30);
+  // background-image: url('/src/assets/utils/dark.svg');
   background-size: cover;
   background-repeat: no-repeat;
 }

@@ -25,11 +25,9 @@ function drawerClick(e) {
 </script>
 
 <template>
-  <div :class="darkStore.dark? 'acrylic_dark': 'acrylic_light'" style="transform:scale(1);">
-    <div>
+  <div :class="darkStore.dark ? 'acrylic_dark' : 'acrylic_light'">
 
-    </div>
-    <q-layout view="hHr lpr lfr">
+    <q-layout view="hHr lpr lfr" >
       <q-header class="text-grey q-ma-sm q-py-xs header">
         <q-toolbar>
           <q-avatar rounded>
@@ -87,7 +85,8 @@ function drawerClick(e) {
 
       <q-page-container>
         <q-page>
-          <div class="column q-pt-lg q-pb-sm q-pl-sm q-pr-sm" style="min-height: inherit">
+
+          <div class="column q-pt-lg q-pb-md q-pl-sm q-pr-sm" style="min-height: inherit;">
             <div :class="[darkStore.dark ? 'page_dark' : 'page_light']" class="row">
               <router-view></router-view>
             </div>
@@ -101,8 +100,6 @@ function drawerClick(e) {
 </template>
 
 <style lang='scss' scoped>
-
-
 .page_light {
   flex: 1;
   border-radius: 8px;
