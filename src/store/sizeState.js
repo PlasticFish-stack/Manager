@@ -8,6 +8,7 @@ export const UseSizeState = defineStore('size', () => {
   function sizeGet(h, w) {
     height.value = h
     width.value = w
+    console.log(height.value, width.value, 'sizeState');
   }
   
   return { height, width, sizeGet }

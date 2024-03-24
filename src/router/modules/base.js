@@ -5,6 +5,7 @@ export default[
     path: '/',
     name: 'index',
     component: index,
+    redirect: 'home',
     children: [
       {
         path: '/home',
