@@ -1,5 +1,5 @@
 //主路由
-import index from '@/views/index/index.vue'
+import index from '@/views/index'
 export default[
   {
     path: '/',
@@ -10,7 +10,7 @@ export default[
       {
         path: '/home',
         name: 'home',
-        component: () => import("@/views/index/template/home")
+        component: () => import("@/views/index/home")
       }
     ]
   }

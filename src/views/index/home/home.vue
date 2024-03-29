@@ -30,7 +30,7 @@ let systemInformation = setInterval(() => {
         <div class="q-mb-md" style="width: 100%;display: flex;">
           <infoCard class="fit" :info="serverInfoStore.serverMsg['swap']" :title="'swap'" />
         </div>
-        <div class="q-mb-md row" style="width: 100%; display: flex; ">
+        <div class=" row" style="width: 100%; display: flex; ">
           <infoCard class=" q-mr-md" style="flex: 1" :info="serverInfoStore.serverMsg['netCount']" :title="'netCount'" />
           <infoCard class=" q-mr-md" style="flex: 1" :info="serverInfoStore.serverMsg['load']" :title="'load'" />
           <infoCard style="flex: 1;" :info="serverInfoStore.serverMsg['speed']" :title="'speed'" />
