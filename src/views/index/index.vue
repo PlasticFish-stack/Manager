@@ -1,8 +1,10 @@
 <script setup>
 
+import test from '../test/test.vue';
 import { UseDarkState } from '@/store/darkState.js';
 import mode from '@/components/mode'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
+const layout = ref(null)
 const darkStore = UseDarkState()
 const leftDrawerOpen = ref(false)
 function toggleLeftDrawer() {
@@ -19,13 +21,14 @@ function drawerClick(e) {
   }
 }
 
-
+onMounted(() => {
+  console.log(layout.value);
+})
 </script>
 
 <template>
-  <div :class="darkStore.dark ? 'acrylic_dark' : 'acrylic_light'">
-
-    <q-layout view="hHr lpr lfr" >
+  <div :class="darkStore.dark ? 'acrylic_dark' : 'acrylic_light'" class="hide-scrollbar fit">
+    <q-layout view="hHh lpR fFf" ref="layout">
       <q-header class="text-grey q-ma-sm q-py-xs header">
         <q-toolbar>
           <q-avatar rounded>
@@ -52,7 +55,7 @@ function drawerClick(e) {
 
       <q-drawer class="q-py-lg" persistent v-model="drawer" show-if-above @click.capture="drawerClick"
         :mini="!drawer || miniState" :mini-width="56" :width="200" side="left">
-        <q-list >
+        <q-list>
           <q-item>
             <Transition>
               <q-btn dense flat round :icon="leftDrawerOpen ? 'menu_open' : 'menu'" @click="miniState = true" />
@@ -83,11 +86,10 @@ function drawerClick(e) {
 
       <q-page-container>
         <q-page>
-          <div class="column q-pt-md q-pl-sm q-pr-sm" style="min-height: inherit;">
-            <div :class="[darkStore.dark ? 'page_dark' : 'page_light']" class="row">
-              <router-view></router-view>
-            </div>
-
+          <div class="q-py-md q-pl-sm q-pr-sm row" style="min-height: inherit;"
+            :class="[darkStore.dark ? 'page_dark' : 'page_light']">
+            <!-- <router-view></router-view> -->
+            <test />
           </div>
         </q-page>
       </q-page-container>
@@ -100,13 +102,14 @@ function drawerClick(e) {
 .page_light {
   flex: 1;
   border-radius: 8px;
+  display: flex;
 }
 
 
 .page_dark {
   flex: 1;
   border-radius: 8px;
-
+  display: flex;
 }
 
 .header {
