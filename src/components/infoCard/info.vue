@@ -9,8 +9,14 @@ function byte(data) {
   return +(data / 1024 / 1024).toFixed(2)
 }
 let title = ref(null)
-let ratio = ref('')
-
+let userFlow = computed(() => {
+  if (props.title != 'user')return 0;
+  let res = props.info.reduce((prev, cur) => {
+    if (!prev) { return cur.Download }
+    return prev + cur.Download
+  }, 0)
+  return byte(res)
+})
 let information = computed(() => {
   let res = null
   switch (props.title) {
@@ -42,6 +48,9 @@ let information = computed(() => {
       title.value = "交换空间"
       res = (props.info['used'] != 0 && props.info['total'] != 0) ? +(((props.info['used'] / props.info['total']) * 100).toFixed(2)) : 0
       break;
+    case "user":
+      title.value = "使用流量"
+      res = +((400 / +((userFlow.value / 1024).toFixed(2))).toFixed(2))
     default:
       break;
   }
@@ -67,7 +76,9 @@ let information = computed(() => {
       <div class="row items-center">
         <div class="text-subtitle1">{{ title }}</div>
         <q-space></q-space>
-        <div class="text-body1" v-if="(props.title != 'user' && props.title != 'speed' && props.title != 'netCount' && props.title != 'load')">{{ information }}%</div>
+        <div class="text-body1"
+          v-if="(props.title != 'user' && props.title != 'speed' && props.title != 'netCount' && props.title != 'load')">
+          {{ information }}%</div>
       </div>
       <div class="row items-center">
         <div v-if="props.title === 'memory'" class="text-caption text-grey-8">
@@ -80,8 +91,14 @@ let information = computed(() => {
         <div v-if="(props.title == 'speed' || props.title == 'netCount' || props.title == 'load')" class="text-grey-8">
           {{ information }}
         </div>
+        <div v-if="props.title == 'user'" class="text-caption text-grey-8">
+          已使用{{ (userFlow / 1024).toFixed(2) }}GB/总流量:400GB
+        </div>
       </div>
       <div v-if="props.title != 'user' && props.title != 'speed' && props.title != 'netCount' && props.title != 'load'">
+        <q-linear-progress stripe rounded size="20px" :value="information / 100" :color="color" class="q-mt-sm" />
+      </div>
+      <div v-if="props.title == 'user'">
         <q-linear-progress stripe rounded size="20px" :value="information / 100" :color="color" class="q-mt-sm" />
       </div>
       <div></div>
