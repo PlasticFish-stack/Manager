@@ -24,7 +24,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <q-btn round :text-color="$q.dark.isActive ? 'deep-orange-12' : 'amber-8'" class="mode"
+  <q-btn round :text-color="$q.dark.isActive ? 'yellow-8' : 'amber-8'" class="mode"
     :icon="store.dark ? 'wb_sunny' : 'nightlight_round'"
     @click="store.ModeToggle(); reLoading()"></q-btn>
 </template>

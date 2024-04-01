@@ -55,9 +55,9 @@ let information = computed(() => {
 </script>
 
 <template>
-  <div class="overflow-hidden q-pa-lg" style="border-radius: 8px;"
+  <div class="overflow-hidden q-pa-lg " style="border-radius: 8px;"
     :style="{ 'border': darkStore.dark ? '' : 'border: 1px solid white' }"
-    :class="darkStore.dark ? 'acrylic_gery' : 'acrylic_light', props.title">
+    :class="darkStore.dark ? 'acrylic_gery ' : 'acrylic_light shadow-1', props.title">
     <q-skeleton type="QRange" v-if="props.info == null" size="100%" />
     <div v-if="props.info != null">
       <div class="row items-center">
@@ -67,7 +67,7 @@ let information = computed(() => {
       <div class="row items-center">
         <div class="text-subtitle1">{{ title }}</div>
         <q-space></q-space>
-        <div class="text-body1">{{ information }}{{ props.title == 'speed' || props.title == 'netCount' || props.title == 'load' ? '' : '%' }}</div>
+        <div class="text-body1" v-if="(props.title != 'user' && props.title != 'speed' && props.title != 'netCount' && props.title != 'load')">{{ information }}%</div>
       </div>
       <div class="row items-center">
         <div v-if="props.title === 'memory'" class="text-caption text-grey-8">
@@ -77,13 +77,15 @@ let information = computed(() => {
         <div v-if="props.title === 'swap'" class="text-caption text-grey-8">
           已用{{ byte(props.info['used']) }}MB/{{ byte(props.info['used'] + props.info['free']) }}MB<span
             v-if="props.info['used'] == 0 && props.info['total'] == 0" class="text-red">(未启用)</span></div>
+        <div v-if="(props.title == 'speed' || props.title == 'netCount' || props.title == 'load')" class="text-grey-8">
+          {{ information }}
+        </div>
       </div>
-      <div v-if="props.title != 'speed' && props.title != 'netCount' && props.title != 'load'">
+      <div v-if="props.title != 'user' && props.title != 'speed' && props.title != 'netCount' && props.title != 'load'">
         <q-linear-progress stripe rounded size="20px" :value="information / 100" :color="color" class="q-mt-sm" />
       </div>
       <div></div>
     </div>
-
   </div>
 
 </template>

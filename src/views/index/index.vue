@@ -4,7 +4,6 @@ import test from '../test/test.vue';
 import { UseDarkState } from '@/store/darkState.js';
 import mode from '@/components/mode'
 import { onMounted, ref } from 'vue'
-const layout = ref(null)
 const darkStore = UseDarkState()
 const leftDrawerOpen = ref(false)
 function toggleLeftDrawer() {
@@ -21,19 +20,16 @@ function drawerClick(e) {
   }
 }
 
-onMounted(() => {
-  console.log(layout.value);
-})
 </script>
 
 <template>
   <div :class="darkStore.dark ? 'acrylic_dark' : 'acrylic_light'" class="hide-scrollbar fit">
-    <q-layout view="hHh lpR fFf" ref="layout">
+    <q-layout view="hHh lpR fFf" >
       <q-header class="text-grey q-ma-sm q-py-xs header">
         <q-toolbar>
           <q-avatar rounded>
             <img src="@/assets/pic/404.png">
-            <q-menu :offset="[0, 20]">
+            <q-menu :offset="[10, 20]">
               <div class="column q-pa-xl no-wrap items-center justify-between">
                 <q-avatar size="120px">
                   <img src="@/assets/pic/401.jpg">
@@ -47,7 +43,7 @@ onMounted(() => {
           </q-avatar>
           <q-space />
           <q-space />
-          <q-btn>更换端口</q-btn>
+          <!-- <q-btn class="q-mr-lg">更换端口</q-btn> -->
           <mode />
 
         </q-toolbar>
@@ -86,10 +82,10 @@ onMounted(() => {
 
       <q-page-container>
         <q-page>
-          <div class="q-py-md q-pl-sm q-pr-sm row" style="min-height: inherit;"
+          <div class="q-py-md q-pl-sm q-pr-xs row" style="min-height: inherit;"
             :class="[darkStore.dark ? 'page_dark' : 'page_light']">
-            <!-- <router-view></router-view> -->
-            <test />
+            <router-view></router-view>
+            <!-- <test /> -->
           </div>
         </q-page>
       </q-page-container>

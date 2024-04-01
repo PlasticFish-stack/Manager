@@ -56,14 +56,14 @@ async function handleLogin() {
 <template>
   <div class="fullscreen row justify-center items-center gt-sm  acrylic ">
 
-    <div class="q-ma-xl loginWindow" >
-      <q-responsive :ratio="5/3">
+    <div class="q-ma-xl loginWindow">
+      <q-responsive :ratio="5 / 3">
         <div class="row login">
           <div class="row col-6 bg-grey-6 full-height justify-center">
-            <q-img class="full-height" :style="{ 'filter': darkStore.dark ? 'blur(0px) grayscale(20%)' : '' }"
-              fit="cover" position="0 0"
-              :src="darkStore.dark ? 'src/assets/pic/login_dark.jpg' : 'src/assets/pic/login.jpg'" loading="eager">
-            </q-img>
+            <q-img class="full-height" fit="cover" position="0 0" :src="'src/assets/pic/login.jpg'" loading="eager"
+              v-show="!darkStore.dark" />
+            <q-img class="full-height" style="filter: blur(0px) grayscale(20%)" fit="cover" position="0 0"
+              :src="'src/assets/pic/login_dark.jpg'" loading="eager" v-show="darkStore.dark" />
           </div>
           <div class="col-6 relative-position full-height form">
             <mode class="float-right q-ma-lg" />
