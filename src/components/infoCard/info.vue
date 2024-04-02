@@ -29,8 +29,8 @@ let information = computed(() => {
       res = +(props.info['usedPercent'].toFixed(2))
       break;
     case "load":
-      title.value = "负载"
-      res = `load1:${props.info['load1']}/load5:${props.info['load5']}/load15:${props.info['load15']}`
+      title.value = "负载(1/5/15)"
+      res = `Load:${props.info['load1']}/${props.info['load5']}/${props.info['load15']}`
       break;
     case "memory":
       title.value = "运行内存"
